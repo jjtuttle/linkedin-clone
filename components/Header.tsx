@@ -1,5 +1,8 @@
-import { Briefcase, HomeIcon, Link, MessageSquare, SearchIcon, UsersIcon } from "lucide-react"
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Briefcase, HomeIcon, MessagesSquare, SearchIcon, UsersIcon } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link";
+import { Button } from "./ui/button";
 
 
 function Header() {
@@ -23,7 +26,8 @@ function Header() {
                     />
                 </form>
             </div>
-            <div className="">
+            <div className="flex items-center space-x-4 px-6">
+                {/* Links */}
                 <Link href="/" className="icon">
                     <HomeIcon className="h-5" />
                     <p>Home</p>
@@ -40,10 +44,22 @@ function Header() {
                 </Link>
 
                 <Link href="/" className="icon">
-                    <MessageSquare className="h-5" />
+                    <MessagesSquare className="h-5" />
                     <p>Messaging</p>
                 </Link>
+                
+                {/* User Button if sign in*/}
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
 
+                {/* //! 48:41 video  */}
+                {/* Sign In Button if not signed in */}
+                <SignedOut>
+                    <Button asChild variant={"secondary"}>
+                        <SignInButton />
+                    </Button>
+                </SignedOut>
             </div>
         </div>
     )
